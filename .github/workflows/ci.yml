@@ -1,0 +1,30 @@
+name: 🧪 CI – Frontend Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout репозиторий
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Установка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Установка зависимостей
+        run: |
+          cd frontend
+          npm install
+
+      - name: 🧪 Сборка проекта
+        run: |
+          cd frontend
+          npm run build
